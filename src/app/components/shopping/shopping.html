@@ -1,0 +1,97 @@
+<div class="container-fluid container-lg py-3 py-lg-4">
+  <div class="row g-4">
+    <!-- Lista de productos -->
+    <div class="col-12 col-lg-8">
+      <h2 class="h3 mb-4">Tu Pedido</h2>
+      
+      <div class="card mb-3" *ngFor="let item of cartItems">
+        <div class="card-body">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 align-items-center g-3">
+            <!-- Imagen del producto -->
+            <div class="col-12 col-sm-auto text-center">
+              <img [src]="item.image" class="img-fluid rounded" [alt]="item.name" 
+                   style="max-width: 120px;">
+            </div>
+            
+            <!-- Detalles del producto -->
+            <div class="col">
+              <h5 class="card-title h6 mb-2">{{item.name}}</h5>
+              <div class="d-flex align-items-center mb-2 mb-sm-0">
+                <span class="text-warning me-1">★</span>
+                <span>{{item.rating}}</span>
+              </div>
+            </div>
+            
+            <!-- Controles de cantidad -->
+            <div class="col-12 col-sm-auto">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="btn-group btn-group-sm">
+                  <button class="btn btn-outline-primary">-</button>
+                  <button class="btn btn-outline-primary px-3">{{item.quantity}}</button>
+                  <button class="btn btn-outline-primary">+</button>
+                </div>
+                <span class="ms-3 fw-bold">${{item.price}}</span>
+                <button class="btn btn-link text-danger ms-3 p-0">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resumen del pedido -->
+    <div class="col-12 col-lg-4">
+      <div class="card sticky-lg-top" style="top: 1rem;">
+        <div class="card-body">
+          <h3 class="h4 card-title mb-4">Resumen del pedido</h3>
+          
+          <div class="row mb-2">
+            <div class="col">Productos totales</div>
+            <div class="col-auto">4</div>
+          </div>
+          
+          <div class="row mb-2">
+            <div class="col">Precio original</div>
+            <div class="col-auto">${{originalPrice}}</div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col">Gastos de envío</div>
+            <div class="col-auto">${{shipping}}</div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">Descuento</div>
+            <div class="col-auto">${{discount}}</div>
+          </div>
+
+          <hr>
+
+          <div class="row mb-3">
+            <div class="col"><h5 class="mb-0">Total</h5></div>
+            <div class="col-auto"><h5 class="mb-0">${{total}}</h5></div>
+          </div>
+
+          <div class="mb-3">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Código promocional">
+              <button class="btn btn-outline-primary">Aplicar</button>
+            </div>
+          </div>
+
+          <button class="btn btn-primary w-100 mb-4">Pagar ahora</button>
+
+          <h6 class="mb-3">Métodos de pago aceptados</h6>
+          <div class="d-flex flex-wrap gap-2">
+            <img src="assets/images/visa.png" alt="Visa" height="30">
+            <img src="assets/images/mastercard.png" alt="Mastercard" height="30">
+            <img src="assets/images/amex.png" alt="American Express" height="30">
+            <img src="assets/images/paypal.png" alt="PayPal" height="30">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
