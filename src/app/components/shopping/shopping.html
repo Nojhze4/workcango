@@ -1,97 +1,116 @@
-<div class="container-fluid container-lg py-3 py-lg-4">
-  <div class="row g-4">
-    <!-- Lista de productos -->
-    <div class="col-12 col-lg-8">
-      <h2 class="h3 mb-4">Tu Pedido</h2>
-      
-      <div class="card mb-3" *ngFor="let item of cartItems">
-        <div class="card-body">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 align-items-center g-3">
-            <!-- Imagen del producto -->
-            <div class="col-12 col-sm-auto text-center">
-              <img [src]="item.image" class="img-fluid rounded" [alt]="item.name" 
-                   style="max-width: 120px;">
-            </div>
-            
-            <!-- Detalles del producto -->
-            <div class="col">
-              <h5 class="card-title h6 mb-2">{{item.name}}</h5>
-              <div class="d-flex align-items-center mb-2 mb-sm-0">
-                <span class="text-warning me-1">★</span>
-                <span>{{item.rating}}</span>
-              </div>
-            </div>
-            
-            <!-- Controles de cantidad -->
-            <div class="col-12 col-sm-auto">
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="btn-group btn-group-sm">
-                  <button class="btn btn-outline-primary">-</button>
-                  <button class="btn btn-outline-primary px-3">{{item.quantity}}</button>
-                  <button class="btn btn-outline-primary">+</button>
-                </div>
-                <span class="ms-3 fw-bold">${{item.price}}</span>
-                <button class="btn btn-link text-danger ms-3 p-0">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+<div class="checkout-container container-fluid">
+  <!-- SECCIÓN IZQUIERDA -->
+  <div class="order-section">
+    <h3 class="order-title">Tu Pedido</h3>
+
+    <!-- Producto 1 -->
+    <div class="order-item">
+    <img src="/assets/gafas.png" alt="Gafas de sol para hombre" />
+    <div class="item-info">
+    <h5>Gafas de sol para hombre</h5>
+    <div class="item-rating"><i class="bi bi-star-fill me-1"></i>4.7</div>
+    </div>
+    <div class="item-actions">
+    <button class="btn-quantity">−</button>
+    <span>1</span>
+    <button class="btn-quantity">+</button>
+    <button class="btn-delete">🗑️</button>
+    </div>
+    <strong>$15</strong>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="order-item">
+    <img src="/assets/zapatillas.png" alt="Gafas de sol para hombre" />
+    <div class="item-info">
+    <h5>Zapatillas para hombre</h5>
+    <div class="item-rating"><i class="bi bi-star-fill me-1"></i>4.7</div>
+    </div>
+    <div class="item-actions">
+    <button class="btn-quantity">−</button>
+    <span>1</span>
+    <button class="btn-quantity">+</button>
+    <button class="btn-delete">🗑️</button>
+    </div>
+    <strong>$15</strong>
+    </div>
+
+    <!-- Producto 3 -->
+    <div class="order-item">
+    <img src="/assets/reloj.png" alt="Reloj de pulsera para hombre" />
+    <div class="item-info">
+    <h5>Reloj de pulsera para hombre</h5>
+    <div class="item-rating"><i class="bi bi-star-fill me-1"></i>4.7</div>
+    </div>
+    <div class="item-actions">
+    <button class="btn-quantity">−</button>
+    <span>1</span>
+    <button class="btn-quantity">+</button>
+    <button class="btn-delete">🗑️</button>
+    </div>
+    <strong>$15</strong>
+    </div>
+
+    <!-- Producto 4 -->
+    <div class="order-item">
+    <img src="/assets/iphone.png" alt="iPhone XS Max" />
+    <div class="item-info">
+    <h5>iPhone XS Max</h5>
+    <div class="item-rating"><i class="bi bi-star-fill me-1"></i>4.7</div>
+    </div>
+    <div class="item-actions">
+    <button class="btn-quantity">−</button>
+    <span>1</span>
+    <button class="btn-quantity">+</button>
+    <button class="btn-delete">🗑️</button>
+    </div>
+    <strong>$15</strong>
+    </div>
+  </div>
+
+  <!-- SECCIÓN DERECHA -->
+  <div class="summary-section">
+    <h4>Resumen del pedido</h4>
+
+    <div class="summary-details">
+      <div class="row">
+        <div class="col">Productos totales</div>
+        <div class="col text-end">4</div>
+      </div>
+      <div class="row">
+        <div class="col">Precio original</div>
+        <div class="col text-end">$60</div>
+      </div>
+      <div class="row">
+        <div class="col">Gastos de envío</div>
+        <div class="col text-end">$0</div>
+      </div>
+      <div class="row">
+        <div class="col">Descuento</div>
+        <div class="col text-end">$0</div>
+      </div>
+      <div class="row summary-total">
+        <div class="col">Total</div>
+        <div class="col text-end">$60</div>
       </div>
     </div>
 
-    <!-- Resumen del pedido -->
-    <div class="col-12 col-lg-4">
-      <div class="card sticky-lg-top" style="top: 1rem;">
-        <div class="card-body">
-          <h3 class="h4 card-title mb-4">Resumen del pedido</h3>
-          
-          <div class="row mb-2">
-            <div class="col">Productos totales</div>
-            <div class="col-auto">4</div>
-          </div>
-          
-          <div class="row mb-2">
-            <div class="col">Precio original</div>
-            <div class="col-auto">${{originalPrice}}</div>
-          </div>
+    <div class="promo-input">
+      <input type="text" placeholder="Agregar código promocional" class="form-control" />
+      <button>Hecho</button>
+    </div>
 
-          <div class="row mb-2">
-            <div class="col">Gastos de envío</div>
-            <div class="col-auto">${{shipping}}</div>
-          </div>
+    <button class="btn-pay">Pagar ahora</button>
 
-          <div class="row mb-3">
-            <div class="col">Descuento</div>
-            <div class="col-auto">${{discount}}</div>
-          </div>
-
-          <hr>
-
-          <div class="row mb-3">
-            <div class="col"><h5 class="mb-0">Total</h5></div>
-            <div class="col-auto"><h5 class="mb-0">${{total}}</h5></div>
-          </div>
-
-          <div class="mb-3">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Código promocional">
-              <button class="btn btn-outline-primary">Aplicar</button>
-            </div>
-          </div>
-
-          <button class="btn btn-primary w-100 mb-4">Pagar ahora</button>
-
-          <h6 class="mb-3">Métodos de pago aceptados</h6>
-          <div class="d-flex flex-wrap gap-2">
-            <img src="assets/images/visa.png" alt="Visa" height="30">
-            <img src="assets/images/mastercard.png" alt="Mastercard" height="30">
-            <img src="assets/images/amex.png" alt="American Express" height="30">
-            <img src="assets/images/paypal.png" alt="PayPal" height="30">
-          </div>
-        </div>
+    <div class="payment-methods">
+      <h5>Métodos de pago aceptados</h5>
+      <div class="payment-logos">
+        <img src="/assets/visa.png" alt="Visa" />
+        <img src="/assets/amex.png" alt="Amex" />
+        <img src="/assets/mastercard.png" alt="Mastercard" />
+        <img src="/assets/paypal.png" alt="PayPal" />
       </div>
     </div>
   </div>
 </div>
+
