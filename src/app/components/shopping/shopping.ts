@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping',
@@ -10,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./shopping.css'],
 })
 export class ShoppingComponent {
+  constructor(private router: Router) {}
   // Totales
   shipping: number = 0;
   discount: number = 0;
@@ -96,5 +98,10 @@ export class ShoppingComponent {
   /** Total de artículos */
   getTotalItems(): number {
     return this.cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  }
+
+  /** Navega al gateway de pago */
+  payNow() {
+    this.router.navigate(['/payment-gateway']);
   }
 }
