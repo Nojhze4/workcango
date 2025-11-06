@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // 👈 Necesario para ngModel
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './shopping.html',
-  styleUrls: ['./shopping.css']
+  styleUrls: ['./shopping.css'],
 })
 export class ShoppingComponent {
   // Totales
@@ -26,64 +26,58 @@ export class ShoppingComponent {
       price: 15,
       quantity: 1,
       rating: 4.7,
-      image: 'assets/images/gafas_de_sol_para_hombre.png'
+      image: '/assets/gafas.png',
     },
     {
       name: 'Zapatillas para hombre',
       price: 15,
       quantity: 1,
       rating: 4.7,
-      image: 'assets/images/shoes.jpg'
+      image: '/assets/zapatillas.png',
     },
     {
       name: 'Reloj de pulsera para hombre',
       price: 15,
       quantity: 1,
       rating: 4.7,
-      image: 'assets/images/watch.jpg'
+      image: '/assets/reloj.png',
     },
     {
       name: 'iPhone XS Max',
       price: 15,
       quantity: 1,
       rating: 4.7,
-      image: 'assets/images/iphone.jpg'
-    }
+      image: '/assets/iphone.png',
+    },
   ];
 
-  /** 🔢 Calcula el total general */
+  /** Calcula el total general */
   private calculateOriginalPrice() {
-    this.originalPrice = this.cartItems.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
+    this.originalPrice = this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   }
 
-  /** 🔄 Actualiza el total */
+  /** Actualiza el total */
   updateTotal() {
     this.total = this.originalPrice + this.shipping - this.discount;
   }
 
-  /** ➕➖ Cambia la cantidad de un producto */
+  /** Cambia la cantidad de un producto */
   updateQuantity(index: number, change: number) {
     if (this.cartItems[index]) {
-      this.cartItems[index].quantity = Math.max(
-        1,
-        this.cartItems[index].quantity + change
-      );
+      this.cartItems[index].quantity = Math.max(1, this.cartItems[index].quantity + change);
       this.calculateOriginalPrice();
       this.updateTotal();
     }
   }
 
-  /** ❌ Elimina un producto */
+  /** Elimina un producto */
   removeItem(index: number) {
     this.cartItems.splice(index, 1);
     this.calculateOriginalPrice();
     this.updateTotal();
   }
 
-  /** 💸 Aplica un código de descuento */
+  /** Aplica un código de descuento */
   applyDiscount(code: string) {
     const normalized = code.trim().toLowerCase();
 
@@ -99,7 +93,7 @@ export class ShoppingComponent {
     this.updateTotal();
   }
 
-  /** 📦 Total de artículos */
+  /** Total de artículos */
   getTotalItems(): number {
     return this.cartItems.reduce((sum, item) => sum + item.quantity, 0);
   }

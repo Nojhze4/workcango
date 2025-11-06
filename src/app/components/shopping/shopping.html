@@ -3,68 +3,20 @@
   <div class="order-section">
     <h3 class="order-title">Tu Pedido</h3>
 
-    <!-- Producto 1 -->
-    <div class="order-item">
-    <img src="/assets/gafas.png" alt="Gafas de sol para hombre" />
-    <div class="item-info">
-    <h5>Gafas de sol para hombre</h5>
-    <div class="item-rating"><i class="bi bi-star-fill me-1"></i>4.7</div>
-    </div>
-    <div class="item-actions">
-    <button class="btn-quantity">−</button>
-    <span>1</span>
-    <button class="btn-quantity">+</button>
-    <button class="btn-delete">🗑️</button>
-    </div>
-    <strong>$15</strong>
-    </div>
-
-    <!-- Producto 2 -->
-    <div class="order-item">
-    <img src="/assets/zapatillas.png" alt="Gafas de sol para hombre" />
-    <div class="item-info">
-    <h5>Zapatillas para hombre</h5>
-    <div class="item-rating"><i class="bi bi-star-fill me-1"></i>4.7</div>
-    </div>
-    <div class="item-actions">
-    <button class="btn-quantity">−</button>
-    <span>1</span>
-    <button class="btn-quantity">+</button>
-    <button class="btn-delete">🗑️</button>
-    </div>
-    <strong>$15</strong>
-    </div>
-
-    <!-- Producto 3 -->
-    <div class="order-item">
-    <img src="/assets/reloj.png" alt="Reloj de pulsera para hombre" />
-    <div class="item-info">
-    <h5>Reloj de pulsera para hombre</h5>
-    <div class="item-rating"><i class="bi bi-star-fill me-1"></i>4.7</div>
-    </div>
-    <div class="item-actions">
-    <button class="btn-quantity">−</button>
-    <span>1</span>
-    <button class="btn-quantity">+</button>
-    <button class="btn-delete">🗑️</button>
-    </div>
-    <strong>$15</strong>
-    </div>
-
-    <!-- Producto 4 -->
-    <div class="order-item">
-    <img src="/assets/iphone.png" alt="iPhone XS Max" />
-    <div class="item-info">
-    <h5>iPhone XS Max</h5>
-    <div class="item-rating"><i class="bi bi-star-fill me-1"></i>4.7</div>
-    </div>
-    <div class="item-actions">
-    <button class="btn-quantity">−</button>
-    <span>1</span>
-    <button class="btn-quantity">+</button>
-    <button class="btn-delete">🗑️</button>
-    </div>
-    <strong>$15</strong>
+    <!-- Lista dinámica de productos -->
+    <div class="order-item" *ngFor="let item of cartItems; let i = index">
+      <img [src]="item.image" [alt]="item.name" />
+      <div class="item-info">
+        <h5>{{ item.name }}</h5>
+        <div class="item-rating"><i class="bi bi-star-fill me-1"></i>{{ item.rating }}</div>
+      </div>
+      <div class="item-actions">
+        <button class="btn-quantity" (click)="updateQuantity(i, -1)">−</button>
+        <span>{{ item.quantity }}</span>
+        <button class="btn-quantity" (click)="updateQuantity(i, 1)">+</button>
+        <button class="btn-delete" (click)="removeItem(i)">🗑️</button>
+      </div>
+      <strong>${{ item.price }}</strong>
     </div>
   </div>
 
@@ -75,29 +27,34 @@
     <div class="summary-details">
       <div class="row">
         <div class="col">Productos totales</div>
-        <div class="col text-end">4</div>
+        <div class="col text-end">{{ getTotalItems() }}</div>
       </div>
       <div class="row">
         <div class="col">Precio original</div>
-        <div class="col text-end">$60</div>
+        <div class="col text-end">${{ originalPrice }}</div>
       </div>
       <div class="row">
         <div class="col">Gastos de envío</div>
-        <div class="col text-end">$0</div>
+        <div class="col text-end">${{ shipping }}</div>
       </div>
       <div class="row">
         <div class="col">Descuento</div>
-        <div class="col text-end">$0</div>
+        <div class="col text-end">${{ discount }}</div>
       </div>
       <div class="row summary-total">
         <div class="col">Total</div>
-        <div class="col text-end">$60</div>
+        <div class="col text-end">${{ total }}</div>
       </div>
     </div>
 
     <div class="promo-input">
-      <input type="text" placeholder="Agregar código promocional" class="form-control" />
-      <button>Hecho</button>
+      <input
+        type="text"
+        placeholder="Agregar código promocional"
+        class="form-control"
+        [(ngModel)]="promoCode"
+      />
+      <button (click)="applyDiscount(promoCode)">Hecho</button>
     </div>
 
     <button class="btn-pay">Pagar ahora</button>
@@ -113,4 +70,3 @@
     </div>
   </div>
 </div>
-
